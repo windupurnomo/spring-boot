@@ -1,6 +1,5 @@
 package com.zcodegroup.ws.api;
 
-import java.math.BigInteger;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> getUser(@PathVariable("id") BigInteger id){
+	public ResponseEntity<User> getUser(@PathVariable("id") Long id){
 		User user = userService.findOne(id);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
@@ -50,7 +49,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/api/user/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> deleteUser(@PathVariable("id") BigInteger id){
+	public ResponseEntity<User> deleteUser(@PathVariable("id") Long id){
 		boolean isDeleted = userService.delete(id);
 		if (!isDeleted){
 			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
